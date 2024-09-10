@@ -18,6 +18,9 @@ python -m venv .venv
 # Install required pip packages into the venv
 pip install gpiozero lgpio pyaudio
 
+# Sleep for a second to improve reliability of script
+sleep 1
+
 # Patch lgpio to work on the Pi 5
 sed -i 's/chip = 4/chip = 0/g' .venv/lib/python3.11/site-packages/gpiozero/pins/lgpio.py
 
