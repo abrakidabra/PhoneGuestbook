@@ -15,7 +15,8 @@ button = Button(5)
 
 def recordAudio():
     global message_count
-    filename = datetime.now().strftime("%Y%m%d-%H%M%S")
+    current_time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    filename = f"recording-{str(current_time}.wav"
     print ("recording...")
 
     stream = p.open(format = sample_format,
