@@ -18,6 +18,6 @@ source .venv/bin/activate
 pip install gpiozero lgpio pyaudio
 
 # Patch lgpio to work on the Pi 5
-sed -i 's/chip = 4 if (self._get_revision() & 0xff0) >> 4 == 0x17 else 0/chip = 0 if (self._get_revision() & 0xff0) >> 4 == 0x17 else 0/g' .venv/lib/python3.11/site-packages/gpiozero/pins/lgpio.py
+sed -i 's/chip = 4/chip = 0/g' .venv/lib/python3.11/site-packages/gpiozero/pins/lgpio.py
 
 echo "Setup completed! Please reboot, then run PhoneGuestbook/run.sh to start the program"
