@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+cd "$(dirname "$0")"
 sudo apt update
 sudo apt full-upgrade -y
 
