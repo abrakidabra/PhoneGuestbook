@@ -12,7 +12,7 @@ cd PhoneGuestbook
 
 # Create virtualenv and source it
 python -m venv .venv
-source .venv/bin/activate
+. .venv/bin/activate
 
 # Install required pip packages into the venv
 pip install gpiozero lgpio pyaudio
