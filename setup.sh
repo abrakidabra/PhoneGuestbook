@@ -1,10 +1,10 @@
 #!/bin/sh
 
-sudo apt update
-sudo apt full-upgrade
+sudo apt update -y
+sudo apt full-upgrade -y
 
 # Install python dev tools and pyaudio dependencies to allow building pip packages in the venv
-sudo apt install git python3-dev portaudio19-dev
+sudo apt install git python3-dev portaudio19-dev -y
 
 # Download guestbook code and change to the code directory
 git clone https://github.com/abrakidabra/PhoneGuestbook.git ./PhoneGuestbook
