@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-sudo apt update -y
+sudo apt update
 sudo apt full-upgrade -y
 
 # Install python dev tools and pyaudio dependencies to allow building pip packages in the venv
