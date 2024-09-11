@@ -49,6 +49,9 @@ def recordAudio():
         data = stream.read(chunk)
         frames.append(data)
 
+    # When handset replaced, write the final data frame and log that recording has ceased
+    data = stream.read(chunk)
+    frames.append(data)
     stream.stop_stream()
     stream.close()
     print("Recording ended... Writing to " + filename + "...")
