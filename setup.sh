@@ -16,7 +16,7 @@ python -m venv .venv
 . .venv/bin/activate
 
 # Install required pip packages into the venv
-pip install gpiozero lgpio pyaudio
+pip install gpiozero lgpio pyaudio pygame
 
 # Sleep for a second to improve reliability of script
 sleep 1
