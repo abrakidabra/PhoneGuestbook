@@ -3,12 +3,12 @@ from signal import pause
 import pyaudio
 import wave
 import datetime
+import atexit
 
 chunk = 1024
 sample_format = pyaudio.paInt16
 channels = 1
 fs = 44100
-
 p = pyaudio.PyAudio()
 
 button = Button(5, bounce_time=0.5)
@@ -43,6 +43,12 @@ def recordAudio():
     print("Write complete")
 
 button.when_pressed = recordAudio
+
+
+def exit_handler():
+    p.terminate()
+
+atexit.register(exit_handler)
 
 print("Ready to record!")
 
