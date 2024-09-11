@@ -39,10 +39,10 @@ def recordAudio():
         wf.close()
     print("Write complete")
     p.terminate()
-    quit()
-
-button.when_pressed = recordAudio
+    exit()
 
 print("Ready to record greeting! Pickup handset and record greeting")
 
-pause()
+button.wait_for_press()
+
+recordAudio()
