@@ -11,7 +11,7 @@ fs = 44100
 
 p = pyaudio.PyAudio()
 
-button = Button(5)
+button = Button(5, bounce_time=0.5)
 
 def recordAudio():
     global message_count
