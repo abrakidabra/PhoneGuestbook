@@ -44,8 +44,6 @@ def recordAudio():
 
 button.when_pressed = recordAudio
 
-atexit.register(exit_handler)
-
 print("Ready to record greeting! Pickup handset and record greeting")
 
 pause()
