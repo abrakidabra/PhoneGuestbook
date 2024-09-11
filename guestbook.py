@@ -17,7 +17,7 @@ def recordAudio():
     global message_count
     current_time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     filename = f"recording-{str(current_time)}.wav"
-    print ("recording...")
+    print("Recording...")
 
     stream = p.open(format = sample_format,
                     channels = channels,
@@ -32,7 +32,7 @@ def recordAudio():
 
     stream.stop_stream()
     stream.close()
-    print("... Ending Recording")
+    print("Recording ended... Writing to " + filename + "...")
 
     with wave.open(filename, 'wb') as wf:
         wf.setnchannels(channels)
@@ -40,7 +40,10 @@ def recordAudio():
         wf.setframerate(fs)
         wf.writeframes(b''.join(frames))
         wf.close()
+    print("Write complete")
 
 button.when_pressed = recordAudio
+
+print("Ready to record!")
 
 pause()
