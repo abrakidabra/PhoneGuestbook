@@ -30,7 +30,6 @@ def recordAudio():
     stream.stop_stream()
     stream.close()
     print("Recording ended... Writing to " + greeting_path + "...")
-    greeting.stop()
 
     with wave.open(greeting_path, 'wb') as wf:
         wf.setnchannels(channels)
