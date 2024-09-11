@@ -66,9 +66,10 @@ def recordAudio():
         wf.close()
     print("Write complete")
 
-# Set up event handler for the
+# Set up event handler to run when the handset is lifted
 handset_switch.when_pressed = recordAudio
 
+# Gracefully clean up when exiting using CTRL+C
 def exit_handler():
     p.terminate()
     mixer.quit()
