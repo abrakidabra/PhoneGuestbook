@@ -12,7 +12,7 @@ channels = 1
 fs = 44100
 p = pyaudio.PyAudio()
 
-button = Button(5, bounce_time=0.5)
+button = Button(5, bounce_time=0.25)
 
 mixer.init()
 
