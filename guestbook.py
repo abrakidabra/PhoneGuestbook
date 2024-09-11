@@ -6,7 +6,8 @@ import wave
 import datetime
 import atexit
 import configparser
-from os.path import isfile
+from os.path import isfile, isdir
+from os import makedirs
 
 # Read config data from the config file
 config = configparser.ConfigParser()
@@ -14,6 +15,14 @@ config.read("config.cfg")
 greeting_path = config["Files"]["greeting_path"]
 output_folder = config["Files"]["output_folder"]
 handset_signal_pin = config["GPIO"]["handset_signal_pin"]
+
+# Check if the output folder exists. Error if it exists and is a file, create it if it doesn't exist
+if not isdir(output_folder):
+    if isfile(output_folder):
+        print("ERROR: Output folder is actually a file! Terminating...")
+        quit()
+    else:
+        makedirs(output_folder)
 
 # Configure settings for the recording device
 chunk = 1024
