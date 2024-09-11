@@ -53,6 +53,7 @@ button.when_pressed = recordAudio
 def exit_handler():
     p.terminate()
     mixer.quit()
+    print("Guestbook terminated gracefully")
 
 atexit.register(exit_handler)
 
