@@ -6,6 +6,7 @@ import wave
 import datetime
 import atexit
 import configparser
+from os.path import isfile
 
 # Read config data from the config file
 config = configparser.ConfigParser()
@@ -25,6 +26,9 @@ p = pyaudio.PyAudio()
 handset_switch = Button(handset_signal_pin, bounce_time=0.25)
 
 # Initialise greeting playback
+if not isfile(greeting_path):
+    print(f"ERROR: No greeting file at {greeting_path}")
+    quit()
 mixer.init()
 greeting = mixer.Sound(greeting_path)
 
@@ -33,6 +37,15 @@ def recordAudio():
     current_time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     filename = f"{output_folder}recording-{str(current_time)}.wav"
     
+    # If the file exists, create a versioned copy.
+    # This should almost never run if using timestamps, but on the rare chance that
+    # the system clock resets after a power cycle it would be possible to overwrite
+    # a previously written file, and this should prevent that
+    file_version = 1
+    while isfile(filename):
+        filename = f"{output_folder}recording-{str(current_time)} ({file_version}).wav"
+        file_version += 1
+
     # Play greeting audio and begin recording
     greeting.play()
     print("Recording...")
