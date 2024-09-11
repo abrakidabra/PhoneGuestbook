@@ -1,5 +1,6 @@
 from gpiozero import Button
 from signal import pause
+from pygame import mixer
 import pyaudio
 import wave
 import datetime
@@ -13,10 +14,15 @@ p = pyaudio.PyAudio()
 
 button = Button(5, bounce_time=0.5)
 
+mixer.init()
+
+greeting = mixer.Sound("greeting.wav")
+
 def recordAudio():
     global message_count
     current_time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     filename = f"recording-{str(current_time)}.wav"
+    greeting.play()
     print("Recording...")
 
     stream = p.open(format = sample_format,
@@ -33,6 +39,7 @@ def recordAudio():
     stream.stop_stream()
     stream.close()
     print("Recording ended... Writing to " + filename + "...")
+    greeting.stop()
 
     with wave.open(filename, 'wb') as wf:
         wf.setnchannels(channels)
@@ -44,9 +51,9 @@ def recordAudio():
 
 button.when_pressed = recordAudio
 
-
 def exit_handler():
     p.terminate()
+    mixer.quit()
 
 atexit.register(exit_handler)
 
