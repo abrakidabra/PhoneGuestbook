@@ -22,6 +22,7 @@ pip install gpiozero lgpio pyaudio pygame
 sleep 1
 
 # Patch lgpio to work on the Pi 5
-sed -i 's/chip = 4/chip = 0/g' .venv/lib/python3.11/site-packages/gpiozero/pins/lgpio.py
+# This should no longer be necessary after 13/09/2024, but keeping it here just in case
+#sed -i 's/chip = 4/chip = 0/g' .venv/lib/python3.11/site-packages/gpiozero/pins/lgpio.py
 
 echo "Setup completed! Please reboot, then run PhoneGuestbook/run.sh to start the program"
