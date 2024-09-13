@@ -2,6 +2,10 @@ from gpiozero import Button
 from signal import pause
 import pyaudio
 import wave
+import datetime
+import configparser
+from os.path import isfile, isdir
+from shutil import copy2
 
 chunk = 1024
 sample_format = pyaudio.paInt16
@@ -9,9 +13,20 @@ channels = 1
 fs = 44100
 p = pyaudio.PyAudio()
 
-button = Button(5, bounce_time=0.25)
+config = configparser.ConfigParser()
+config.read("config.cfg")
 
-greeting_path = "greeting.wav"
+greeting_path = config["Files"]["greeting_path"]
+handset_signal_pin = config["GPIO"]["handset_signal_pin"]
+
+button = Button(handset_signal_pin, bounce_time=0.25)
+
+if isfile(greeting_path):
+    if isdir(greeting_path):
+        print("Greeting file is actually a directory! Cannot overwrite")
+    else:
+        copy2(greeting_path, f"{greeting_path}.bak_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}")
+
 
 def recordAudio():
     print("Recording greeting.wav...")
