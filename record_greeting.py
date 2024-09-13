@@ -30,7 +30,7 @@ if isfile(greeting_path):
 
 
 def recordAudio():
-    print("Recording greeting.wav...")
+    print(f'Recording to {greeting_path}...')
 
     stream = p.open(format = sample_format,
                     channels = channels,
