@@ -25,7 +25,7 @@ if isfile(greeting_path):
     if isdir(greeting_path):
         print("Greeting file is actually a directory! Cannot overwrite")
     else:
-        copy2(greeting_path, f"{greeting_path}.bak_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}")
+        copy2(greeting_path, f'{greeting_path}.bak_{datetime.datetime.now().strftime("%Y%m%d-%H%M%S")}')
 
 
 def recordAudio():
